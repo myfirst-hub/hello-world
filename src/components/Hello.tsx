@@ -1,4 +1,74 @@
 import * as React from "react";
+const moment = require('moment');
+
+interface LabelledValue {
+  label?: string;
+}
+
+function printLabel(labelledObj: LabelledValue): number {
+  console.log(labelledObj.label);
+  return 1;
+}
+
+let myObj = {colour: "red", size: 10, label: "Size 10 Object"};
+printLabel(myObj);
+
+
+interface SquareConfig {
+  color?: string;
+  width?: number;
+}
+
+function createSquare(config: SquareConfig): void {
+  console.log(config.color);
+  // let newSquare = {color: "white", area: 100};
+  // if (config.color) {
+  //   // Error: Property 'clor' does not exist on type 'SquareConfig'
+  //   newSquare.color = config.color;
+  // }
+  // if (config.width) {
+  //   newSquare.area = config.width * config.width;
+  // }
+  // return newSquare;
+}
+
+createSquare({ width: 100, color: "blue"});
+
+interface StringArray {
+  [index: number]: string;
+}
+
+let a = Symbol(1);
+
+let strArr : StringArray = {
+  1: "key",
+  2: "123",
+  [a]: 'das'
+}
+
+class Animal {
+  // public name: string;
+  public constructor(public name: string) { }
+  public move(distanceInMeters: number) {
+      console.log(`${this.name} moved ${distanceInMeters}m.`);
+  }
+}
+
+class Animal1 {
+  public name: string;
+  public constructor(theName: string) { this.name = theName; }
+  // public move(distanceInMeters: number) {
+  //     console.log(`${this.name} moved ${distanceInMeters}m.`);
+  // }
+}
+
+let a1 = new Animal("a1");
+let a2 = new Animal1("a2");
+console.log('a1...................', a1)
+// console.log('a2...................', a2)
+// a1 = a2
+// console.log('a1...................', a1)
+// console.log('a2...................', a2)
 
 export interface HelloProps { compiler: string; framework: string; }
 
@@ -79,10 +149,12 @@ function pickCard(x: number | { suit: string; card: number; }[]): any {
 
 let myDeck = [{ suit: "diamonds", card: 2 }, { suit: "spades", card: 10 }, { suit: "hearts", card: 4 }];
 let pickedCard1 = myDeck[pickCard(myDeck)];
-alert("card: " + pickedCard1.card + " of " + pickedCard1.suit);
+// alert("card: " + pickedCard1.card + " of " + pickedCard1.suit);
 
 let pickedCard2 = pickCard(15);
-alert("card: " + pickedCard2.card + " of " + pickedCard2.suit);
+// alert("card: " + pickedCard2.card + " of " + pickedCard2.suit);
+
+console.log('moment..............', moment(new Date()).valueOf())
 
 
 export const Hello = (props: HelloProps) => <h1>Hello2 from {props.compiler} and {props.framework}!</h1>;
